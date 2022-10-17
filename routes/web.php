@@ -36,4 +36,6 @@ Route::get('/createPost', function () {
 
 Route::post('store-ticket', [TicketController::class, 'store'])->middleware(['auth', 'verified']);
 
+Route::post('store-comment', [CommentController::class, 'store'])->middleware(['auth', 'verified']);
+
 require __DIR__.'/auth.php';
