@@ -42,7 +42,8 @@ class CommentController extends Controller
         $comment->ticketID = $request->ticketID;
         $comment->author = Auth::user()['email'];
         $comment->save();
-        return redirect('dashboard');
+        //return redirect('dashboard');
+        return back();
     }
 
     /**

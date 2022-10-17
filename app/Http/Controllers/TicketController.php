@@ -47,7 +47,7 @@ class TicketController extends Controller
         //$ticket->agent = $request->agent;
         $ticket->agent = 'test user';
         $ticket->save();
-        return redirect('dashboard');
+        return redirect('/tickets');
     }
     
 

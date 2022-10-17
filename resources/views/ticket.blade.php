@@ -11,12 +11,12 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     {{$ticket->title}}<br>
                     {{$ticket->content}}<br>
-                    {{$ticket->author}}
+                    {{$ticket->author}}<br>
 
                     Comments:
                     </ul>
                     @foreach ($comments as $comment)
-                        <li>{{$comment->content}}</li>
+                        <li>{{$comment->content}}, {{$comment->author}}</li>
                     @endforeach
                     </ul>
                 </div>
@@ -25,7 +25,7 @@
                             <div class="form-group">
                             <label for="exampleInputEmail1">Comment</label>
                             <input type="text" id="content" name="content" class="form-control" required="">
-                            <input type="text" id="ticketID" name="ticketID" value='{{$ticket->id}}'>
+                            <input type="text" id="ticketID" name="ticketID" style="display:none" value='{{$ticket->id}}'>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
