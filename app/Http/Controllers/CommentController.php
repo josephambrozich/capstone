@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCommentRequest;
 use App\Http\Requests\UpdateCommentRequest;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -38,11 +39,8 @@ class CommentController extends Controller
     {
         $comment = new Comment;
         $comment->content = $request->content;
-        $comment->header = $request->ticket;
-        //$ticket->author = $request->author;
+        $comment->ticketID = $request->ticketID;
         $comment->author = Auth::user()['email'];
-        //$ticket->agent = $request->agent;
-        $comment->agent = 'test user';
         $comment->save();
         return redirect('dashboard');
     }

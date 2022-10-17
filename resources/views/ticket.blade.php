@@ -12,12 +12,20 @@
                     {{$ticket->title}}<br>
                     {{$ticket->content}}<br>
                     {{$ticket->author}}
+
+                    Comments:
+                    </ul>
+                    @foreach ($comments as $comment)
+                        <li>{{$comment->content}}</li>
+                    @endforeach
+                    </ul>
                 </div>
                 <form name="create-comment" id="create-comment" method="post" action="{{url('store-comment')}}">
                         @csrf
                             <div class="form-group">
                             <label for="exampleInputEmail1">Comment</label>
                             <input type="text" id="content" name="content" class="form-control" required="">
+                            <input type="text" id="ticketID" name="ticketID" value='{{$ticket->id}}'>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

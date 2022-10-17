@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Ticket;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -66,7 +67,11 @@ class TicketController extends Controller
         if ($ticket == null) {
             return view('dashboard');
         }
-        return view('ticket', ['ticket'=> $ticket]);
+
+        $comments = Comment::all()->whereIn('ticketID', $id);
+
+
+        return view('ticket', ['ticket'=> $ticket, 'comments'=>$comments]);
     }
 
 
