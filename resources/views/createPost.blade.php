@@ -12,13 +12,18 @@
                     <form name="create-ticket" id="create-ticket" method="post" action="{{url('store-ticket')}}">
                         @csrf
                             <div class="form-group">
-                            <label for="exampleInputEmail1">Title</label>
+                            <label for="exampleInputEmail1">Title</label><br>
                             <input type="text" id="title" name="title" class="form-control" required="">
                             </div>
+                            <br>
                             <div class="form-group">
-                            <label for="exampleInputEmail1">Description</label>
+                            <label for="exampleInputEmail1">Description</label><br>
                             <textarea name="description" class="form-control" required=""></textarea>
+                            <br>
+                            <label for="exampleInputEmail1">Tags</label><br>
+                            <textarea name="tags" class="form-control" required=""></textarea>
                             </div>
+                            <br>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                 </div>

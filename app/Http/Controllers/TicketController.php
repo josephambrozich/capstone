@@ -46,6 +46,7 @@ class TicketController extends Controller
         $ticket->author = Auth::user()['email'];
         //$ticket->agent = $request->agent;
         $ticket->agent = 'test user';
+        $ticket->tags = $request->tags;
         $ticket->save();
         return redirect('/tickets');
     }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('content');
             $table->string('author');
             $table->string('agent');
+            $table->string('tags');
             $table->timestamps();
         });
     }

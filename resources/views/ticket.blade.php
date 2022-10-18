@@ -12,6 +12,7 @@
                     {{$ticket->title}}<br>
                     {{$ticket->content}}<br>
                     {{$ticket->author}}<br>
+                    {{$ticket->tags}}<br>
 
                     Comments:
                     </ul>
