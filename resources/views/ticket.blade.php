@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -23,7 +18,7 @@
                  <ul style="list-style: none;">
 
                     @foreach ($comments as $comment)
-                        <li style="border: 1px solid gray;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
+                        <li style="border: 1px solid #dfdbdb;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
                             <div>{{$comment->content}}</div> <br> <div style="color: #c9c6c6;">{{$comment->author}}</div>
                         </li>
                     @endforeach
