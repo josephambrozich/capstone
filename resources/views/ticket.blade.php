@@ -23,7 +23,7 @@
                  <ul style="list-style: none;">
 
                     @foreach ($comments as $comment)
-                        <li style="border: 1px solid gray;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
+                        <li style="border: 1px solid #dfdbdb;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
                             <div>{{$comment->content}}</div> <br> <div style="color: #c9c6c6;">{{$comment->author}}</div>
                         </li>
                     @endforeach
