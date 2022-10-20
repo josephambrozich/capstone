@@ -30,6 +30,7 @@ Route::get('/tickets', function () {
 */
 Route::get('/tickets', [TicketController::class,'showList'])->name('tickets');
 Route::get('/ticket/{id}', [TicketController::class,'show']);
+Route::get('/ticket/{id}/editTags', [TicketController::class,'editTags']);
 
 Route::get('/createPost', function () {
     return view('createPost');

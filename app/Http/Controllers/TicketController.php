@@ -111,7 +111,21 @@ class TicketController extends Controller
         $comments = Comment::all()->whereIn('ticketID', $id);
 
 
-        return view('ticket', ['ticket'=> $ticket, 'comments'=>$comments]);
+        return view('ticket', ['ticket'=> $ticket, 'comments'=>$comments, 'userRole'=> Auth::user()['role']]);
+    }
+
+    public function editTags(int $id)
+    {
+        //controller action typically returns view
+        $ticket = $this->getTicketById($id);
+        if ($ticket == null) {
+            return view('dashboard');
+        }
+
+        //$comments = Comment::all()->whereIn('ticketID', $id);
+
+
+        return view('editTags', ['ticket'=> $ticket, 'userRole'=> Auth::user()['role']]);
     }
 
 

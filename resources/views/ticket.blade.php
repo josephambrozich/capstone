@@ -5,7 +5,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                 <div style="float:right">By: <div style="">{{$ticket->author}}</div><br>
+                    
+                @if($userRole=='agent')
+                    <a href='/ticket/{{$ticket->id}}/editTags'>Tags: <div style="color: #c9c6c6;">{{$ticket->tags}}</div></div><br></a>
+                @else
                     Tags: <div style="color: #c9c6c6;">{{$ticket->tags}}</div></div><br>
+                @endif
                 <div style="font-size:25px">{{$ticket->title}}</div><br>
                     <div style="font-size:20px">{{$ticket->content}}</div><br>
                     
@@ -22,6 +27,8 @@
                             <div>{{$comment->content}}</div> <br> <div style="color: #c9c6c6;">{{$comment->author}}</div>
                         </li>
                     @endforeach
+
+                    
                     </ul>
 
                 </div>
