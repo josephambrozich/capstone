@@ -35,7 +35,10 @@ Route::get('/createPost', function () {
     return view('createPost');
 })->middleware(['auth', 'verified'])->name('createPost');;
 
+
+
 Route::post('store-ticket', [TicketController::class, 'store'])->middleware(['auth', 'verified']);
+Route::post('search-query', [TicketController::class, 'search'])->middleware(['auth', 'verified']);
 
 Route::post('store-comment', [CommentController::class, 'store'])->middleware(['auth', 'verified']);
 

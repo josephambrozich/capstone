@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Ticket;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
-
+use PhpParser\Node\Expr\Cast\Object_;
 
 class TicketController extends Controller
 {
@@ -60,6 +60,21 @@ class TicketController extends Controller
      * @param  \App\Models\Ticket  $ticket
      * @return \Illuminate\Http\Response
      */
+
+
+    public function search(StoreTicketRequest $keywords){
+        //$tickets = Ticket::all()->orWhere('tags', 'like', '%'.$keywords->search.'%');
+        $tickets = Ticket::all();
+        $ans = [];
+        foreach($tickets as $ticket){
+            if(str_contains($ticket->tags, $keywords->search) ){
+                array_push($ans, $ticket);
+            }
+        }
+
+        return view('search', ['tickets'=>$ans]);
+
+    }
 
     public function show(int $id)
     {
