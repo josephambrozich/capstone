@@ -43,4 +43,6 @@ Route::post('search-query', [TicketController::class, 'search'])->middleware(['a
 
 Route::post('store-comment', [CommentController::class, 'store'])->middleware(['auth', 'verified']);
 
+Route::post('update-ticket-tags', [TicketController::class, 'updateTags'])->middleware(['auth', 'verified']);
+
 require __DIR__.'/auth.php';

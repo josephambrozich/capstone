@@ -167,6 +167,17 @@ class TicketController extends Controller
         //
     }
 
+
+    public function updateTags(UpdateTicketRequest $request)
+    {
+        //Ticket::find($request->ticketID)->update(['tags' => $request->tags]);
+        $ticket = $this->getTicketById($request->ticketID);
+        $ticket->tags = $request->tags;
+        $ticket->save();
+        
+        return view('dashboard');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
