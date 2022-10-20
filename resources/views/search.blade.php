@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <ul>
                    @foreach($tickets as $ticket)
-                        <li>{{$ticket->title}} , <a href="/ticket/{{$ticket->id}}">view</a> </li>
+                        <li>{{$ticket->title}} - {{$ticket->tags}} <a href="/ticket/{{$ticket->id}}">view</a> </li>
                    @endforeach
                    </ul>
                 </div>

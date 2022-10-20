@@ -62,16 +62,40 @@ class TicketController extends Controller
      */
 
 
-    public function search(StoreTicketRequest $keywords){
+    public function search(StoreTicketRequest $request){
         //$tickets = Ticket::all()->orWhere('tags', 'like', '%'.$keywords->search.'%');
         $tickets = Ticket::all();
         $ans = [];
+        $requestKeywords = explode(',', $request->search);
         foreach($tickets as $ticket){
-            if(str_contains($ticket->tags, $keywords->search) ){
+            $ticketKeywords = explode(',', $ticket->tags);
+            //go through each ticket keyword to see if they match
+            if(count($requestKeywords) > count($ticketKeywords)){
+                foreach($requestKeywords as $keywordA){
+                    foreach($ticketKeywords as $keywordB){
+                        if(str_contains(trim($keywordA), trim($keywordB))){
+                            array_push($ans, $ticket);
+                            continue;//end this iteration, the ticket has already been added
+                        }
+                    }
+                }
+            }else{
+                foreach($ticketKeywords as $keywordB){
+                    foreach($requestKeywords as $keywordA){
+                        if(str_contains(trim($keywordA), trim($keywordB))){
+                            array_push($ans, $ticket);
+                            continue;//end this iteration, the ticket has already been added
+                        }
+                    }
+                }
+            }
+
+
+            if(str_contains($ticket->tags, $request->search) ){
                 array_push($ans, $ticket);
             }
         }
-
+        $ans = array_unique(($ans));
         return view('search', ['tickets'=>$ans]);
 
     }
