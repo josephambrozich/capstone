@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateTicketRequest extends FormRequest
 {
@@ -13,7 +14,10 @@ class UpdateTicketRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        if(Auth::user()['role']=='agent'){
+            return true;
+        }
+        return false;//need to set this to rely on user role
     }
 
     /**

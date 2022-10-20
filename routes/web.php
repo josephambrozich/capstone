@@ -30,6 +30,7 @@ Route::get('/tickets', function () {
 */
 Route::get('/tickets', [TicketController::class,'showList'])->name('tickets');
 Route::get('/ticket/{id}', [TicketController::class,'show']);
+Route::get('/ticket/{id}/editTags', [TicketController::class,'editTags']);
 
 Route::get('/createPost', function () {
     return view('createPost');
@@ -41,5 +42,7 @@ Route::post('store-ticket', [TicketController::class, 'store'])->middleware(['au
 Route::post('search-query', [TicketController::class, 'search'])->middleware(['auth', 'verified']);
 
 Route::post('store-comment', [CommentController::class, 'store'])->middleware(['auth', 'verified']);
+
+Route::post('update-ticket-tags', [TicketController::class, 'updateTags'])->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
