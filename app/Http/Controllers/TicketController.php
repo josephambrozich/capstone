@@ -101,7 +101,22 @@ class TicketController extends Controller
     }
 
     public function searchAdv(StoreTicketRequest $request){
-        $tickets = Ticket::all();
+        //getting dates first revolves around knowing what queries to use for dateTime
+        if(empty($request->dateStart) && empty($request->dateEnd)){
+            $tickets = Ticket::all();
+        }
+        else if(empty($request->dateStart)){
+            $tickets = Ticket::all()->where('created_at','<', $request->dateEnd);
+        }
+        else if(empty($request->dateEnd)){
+            $tickets = Ticket::all()->where('created_at','>', $request->dateStart);
+        }
+        else{
+            $tickets = Ticket::all()->where('created_at','<', $request->dateEnd)->where('created_at','>', $request->dateStart);
+        }
+
+
+        //$tickets = Ticket::all();
         $ans = [];
         $requestKeywords = explode(',', $request->tagsInclude);
 
@@ -151,12 +166,17 @@ class TicketController extends Controller
             }
         }
 
-        $before = $request->dateStart;
-        $after = $request->dateEnd;
+        /*Done with query
+        $before = date($request->dateStart);
+        $after = date($request->dateEnd);
 
         for($i=0;$i<count($ans);$i++){
-
+            if($before > $ans[$i]['created_at']){
+                unset($ans[$i]);
+                $i--;
+            }
         }
+        */
 
         
         return view('searchAdvRes', ['tickets'=>$ans]);
