@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('author');
             $table->string('agent');
             $table->string('tags');
+            $table->string('status')->default('open');
+            $table->string('resolved_at')->default('');
             $table->timestamps();
         });
     }
