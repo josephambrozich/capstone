@@ -36,7 +36,11 @@ Route::get('/createPost', function () {
     return view('createPost');
 })->middleware(['auth', 'verified'])->name('createPost');;
 
-
+//advanced search
+Route::get('/advSearch', function () {
+    return view('advSearch');
+})->middleware(['auth', 'verified'])->name('advSearch');
+Route::post('search-query-adv', [TicketController::class, 'searchAdv'])->middleware(['auth', 'verified']);
 
 Route::post('store-ticket', [TicketController::class, 'store'])->middleware(['auth', 'verified']);
 Route::post('search-query', [TicketController::class, 'search'])->middleware(['auth', 'verified']);

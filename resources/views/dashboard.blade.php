@@ -19,7 +19,8 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
-
+                    <br>
+                    <a href="{{ route('advSearch') }}">Advanced Search</a> <br>
                     <br>
                     <a href="{{ route('createPost') }}">Create A Post</a> <br>
                     <a href="{{ route('tickets') }}">View All Posts</a>

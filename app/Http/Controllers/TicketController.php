@@ -100,6 +100,69 @@ class TicketController extends Controller
 
     }
 
+    public function searchAdv(StoreTicketRequest $request){
+        $tickets = Ticket::all();
+        $ans = [];
+        $requestKeywords = explode(',', $request->tagsInclude);
+
+        //inclusive
+        foreach($tickets as $ticket){
+            $ticketKeywords = explode(',', $ticket->tags);
+            //go through each ticket keyword to see if they match
+            if(count($requestKeywords) > count($ticketKeywords)){
+                foreach($requestKeywords as $keywordA){
+                    foreach($ticketKeywords as $keywordB){
+                        if(str_contains(trim($keywordA), trim($keywordB))){
+                            array_push($ans, $ticket);
+                            continue;//end this iteration, the ticket has already been added
+                        }
+                    }
+                }
+            }else{
+                foreach($ticketKeywords as $keywordB){
+                    foreach($requestKeywords as $keywordA){
+                        if(str_contains(trim($keywordA), trim($keywordB))){
+                            array_push($ans, $ticket);
+                            continue;//end this iteration, the ticket has already been added
+                        }
+                    }
+                }
+            }
+
+
+            if(str_contains($ticket->tags, $request->tagsInclude) ){
+                array_push($ans, $ticket);
+            }
+        }
+        $ans = array_unique(($ans));
+
+
+        //exclude
+        $excludeKeywords = explode(',', $request->tagsExclude);
+        $excludeKeywords = array_filter($excludeKeywords);//remove empty array values
+
+        //exclude with FOR I
+        for ($i = 0; $i < count($ans); $i++) {
+            for($j = 0; $j < count($excludeKeywords); $j++){
+                if(str_contains(trim($ans[$i]), trim($excludeKeywords[$j]))){
+                    unset($ans[$i]);
+                    $i=$i-1;
+                }
+            }
+        }
+
+        $before = $request->dateStart;
+        $after = $request->dateEnd;
+
+        for($i=0;$i<count($ans);$i++){
+
+        }
+
+        
+        return view('searchAdvRes', ['tickets'=>$ans]);
+
+    }
+
     public function show(int $id)
     {
         //controller action typically returns view
