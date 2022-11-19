@@ -25,6 +25,15 @@
                             <br>
                             <label for="exampleInputEmail1">End Date</label><br>
                             <input type="date" id="start" name="dateEnd">
+
+                            <br>
+                            <label for="exampleInputEmail1">Status</label><br>
+
+                            <select name="status" id="status">
+                            <option value="">Any</option>
+                            <option value="open">Open</option>
+                            <option value="resolved">Resolved</option>
+                            </select>
                             </div>
                             <br>
                             <button type="submit" class="btn btn-primary">Submit</button>

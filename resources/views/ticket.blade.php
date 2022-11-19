@@ -7,9 +7,11 @@
                 <div style="float:right">By: <div style="">{{$ticket->author}}</div><br>
                     
                 @if($userRole=='agent')
-                    <a href='/ticket/{{$ticket->id}}/editTags'>Tags: <div style="color: #c9c6c6;">{{$ticket->tags}}</div></div><br></a>
+                    <a href='/ticket/{{$ticket->id}}/editTags'>Tags: <div style="color: #c9c6c6;">{{$ticket->tags}}</div><br></a>
+                    <a href='/ticket/{{$ticket->id}}/resolve'><div style="color: #c9c6c6;">{{$ticket->status}}</div><a></div>
                 @else
-                    Tags: <div style="color: #c9c6c6;">{{$ticket->tags}}</div></div><br>
+                    Tags: <div style="color: #c9c6c6;">{{$ticket->tags}}</div><br>
+                    <div style="color: #c9c6c6;">{{$ticket->status}}</div></div>
                 @endif
                 <div style="font-size:25px">{{$ticket->title}}</div><br>
                     <div style="font-size:20px">{{$ticket->content}}</div><br>

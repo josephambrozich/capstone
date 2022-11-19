@@ -102,18 +102,51 @@ class TicketController extends Controller
 
     public function searchAdv(StoreTicketRequest $request){
         //getting dates first revolves around knowing what queries to use for dateTime
-        if(empty($request->dateStart) && empty($request->dateEnd)){
-            $tickets = Ticket::all();
+
+        if(str_contains($request->status, 'open')){
+            if(empty($request->dateStart) && empty($request->dateEnd)){
+                $tickets = Ticket::all()->where('status','=','open');
+            }
+            else if(empty($request->dateStart)){
+                $tickets = Ticket::all()->where('created_at','<', $request->dateEnd)->where('status','=','open');
+            }
+            else if(empty($request->dateEnd)){
+                $tickets = Ticket::all()->where('created_at','>', $request->dateStart)->where('status','=','open');
+            }
+            else{
+                $tickets = Ticket::all()->where('status','=','open')->where('created_at','<', $request->dateEnd)->where('created_at','>', $request->dateStart);
+            }
         }
-        else if(empty($request->dateStart)){
-            $tickets = Ticket::all()->where('created_at','<', $request->dateEnd);
+        else if(str_contains($request->status, 'resolved')){
+            if(empty($request->dateStart) && empty($request->dateEnd)){
+                $tickets = Ticket::all()->where('status','=','resolved');
+            }
+            else if(empty($request->dateStart)){
+                $tickets = Ticket::all()->where('created_at','<', $request->dateEnd)->where('status','=','resolved');
+            }
+            else if(empty($request->dateEnd)){
+                $tickets = Ticket::all()->where('created_at','>', $request->dateStart)->where('status','=','resolved');
+            }
+            else{
+                $tickets = Ticket::all()->where('status','=','resolved')->where('created_at','<', $request->dateEnd)->where('created_at','>', $request->dateStart);
+            } 
         }
-        else if(empty($request->dateEnd)){
-            $tickets = Ticket::all()->where('created_at','>', $request->dateStart);
+        else if(str_contains($request->status, '')){
+            if(empty($request->dateStart) && empty($request->dateEnd)){
+                $tickets = Ticket::all();
+            }
+            else if(empty($request->dateStart)){
+                $tickets = Ticket::all()->where('created_at','<', $request->dateEnd);
+            }
+            else if(empty($request->dateEnd)){
+                $tickets = Ticket::all()->where('created_at','>', $request->dateStart);
+            }
+            else{
+                $tickets = Ticket::all()->where('created_at','<', $request->dateEnd)->where('created_at','>', $request->dateStart);
+            } 
         }
-        else{
-            $tickets = Ticket::all()->where('created_at','<', $request->dateEnd)->where('created_at','>', $request->dateStart);
-        }
+
+        
 
 
         //$tickets = Ticket::all();
@@ -212,6 +245,9 @@ class TicketController extends Controller
     }
 
 
+    
+
+
 
 
     public function getTicketById(int $id): ?Ticket
@@ -259,6 +295,23 @@ class TicketController extends Controller
         $ticket->save();
         
         return view('dashboard');
+    }
+
+
+    public function resolve(int $id)
+    {
+       //Ticket::find($request->ticketID)->update(['tags' => $request->tags]);
+       $ticket = $this->getTicketById($id);
+       if(str_contains($ticket->status, 'open')){
+        $ticket->status="resolved";
+        $ticket->resolved_at=date('Y-m-d');
+       }
+       else{
+        $ticket->status="open";
+       }
+       $ticket->save();
+       
+       return self::show($id);
     }
 
     /**
