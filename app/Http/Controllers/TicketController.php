@@ -193,11 +193,14 @@ class TicketController extends Controller
         for ($i = 0; $i < count($ans); $i++) {
             for($j = 0; $j < count($excludeKeywords); $j++){
                 if(str_contains(trim($ans[$i]), trim($excludeKeywords[$j]))){
-                    unset($ans[$i]);
+                    //unset($ans[$i]);
+                    $ans[$i]=null;//unset gives some volatile results
                     $i=$i-1;
                 }
             }
         }
+
+
 
         /*Done with query
         $before = date($request->dateStart);
@@ -211,7 +214,7 @@ class TicketController extends Controller
         }
         */
 
-        
+        $ans=array_filter($ans);
         return view('searchAdvRes', ['tickets'=>$ans]);
 
     }
