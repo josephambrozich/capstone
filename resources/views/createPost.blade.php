@@ -13,18 +13,18 @@
                         @csrf
                             <div class="form-group">
                             <label for="exampleInputEmail1">Title</label><br>
-                            <input type="text" id="title" name="title" class="form-control" required="">
+                            <input style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" type="text" id="title" name="title" class="form-control" required="">
                             </div>
                             <br>
                             <div class="form-group">
                             <label for="exampleInputEmail1">Description</label><br>
-                            <textarea name="description" class="form-control" required=""></textarea>
+                            <textarea style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" name="description" class="form-control" required=""></textarea>
                             <br>
                             <label for="exampleInputEmail1">Tags</label><br>
-                            <textarea name="tags" class="form-control" required=""></textarea>
+                            <textarea style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" name="tags" class="form-control" required=""></textarea>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button style=" margin: 5px;padding: 7px; border-radius: 12px;font-size: 20px; background-color: #CF5C36;color: white;" type="submit" class="btn btn-primary">Submit</button>
                         </form>
                 </div>
             </div>

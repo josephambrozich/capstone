@@ -194,7 +194,7 @@ class TicketController extends Controller
             for($j = 0; $j < count($excludeKeywords); $j++){
                 if(str_contains(trim($ans[$i]), trim($excludeKeywords[$j]))){
                     //unset($ans[$i]);
-                    $ans[$i]=null;//unset gives some volatile results
+                    $ans[$i]="";//unset gives some volatile results
                     $i=$i-1;
                 }
             }
