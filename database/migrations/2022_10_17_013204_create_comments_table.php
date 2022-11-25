@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('content');
             $table->string('ticketID');
             $table->string('author');
+            $table->boolean('isSolution')->default(0);
             $table->timestamps();
         });
     }

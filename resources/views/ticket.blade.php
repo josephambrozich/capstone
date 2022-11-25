@@ -16,7 +16,6 @@
                 <div style="font-size:25px">{{$ticket->title}}</div><br>
                     <div style="font-size:20px">{{$ticket->content}}</div><br>
                     
-
                     
                 </div>
 
@@ -25,9 +24,26 @@
                  <ul style="list-style: none;">
 
                     @foreach ($comments as $comment)
-                        <li style="border: 1px solid #dfdbdb;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
-                            <div>{{$comment->content}}</div> <br> <div style="color: #c9c6c6;">{{$comment->author}}</div>
-                        </li> 
+                        @if($comment->isSolution)
+                                <li style="border: 1px solid #266DD3;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
+                                <div>{{$comment->content}}</div> <br> <div style="color: #c9c6c6;">{{$comment->author}}</div>
+                                @if($userRole=='agent')
+                                        <a href='/comment/{{$comment->id}}/answer'><div style="color: #c9c6c6;float: right;margin: 0px;">Remove as solution</div><br></a>
+                                    @endif
+                            </li> 
+                            
+                        @else
+                                <li style="border: 1px solid #dfdbdb;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
+                                <div>{{$comment->content}}</div> <br> <div style="color: #c9c6c6;">{{$comment->author}}</div>
+                                    @if($userRole=='agent')
+                                        <a href='/comment/{{$comment->id}}/answer'><div style="color: #c9c6c6;float: right;margin: 0px;">Mark as solution</div><br></a>
+                                    @endif
+                            </li> 
+                            
+                        @endif
+
+                    
+                        
                     @endforeach
 
                     

@@ -46,6 +46,31 @@ class CommentController extends Controller
         return back();
     }
 
+    public function answer($id){
+        //Ticket::find($request->ticketID)->update(['tags' => $request->tags]);
+        $comment = $this->getCommentById($id);
+        if($comment->isSolution == 0){
+        $comment->isSolution=1;
+        }
+        else{
+        $comment->isSolution=0;
+        }
+        $comment->save();
+        
+        return back();
+    }
+
+    public function getCommentById(int $id): ?Comment
+    {
+        $comments = Comment::all();
+        foreach ($comments as $comment) {
+            if ($comment->id === $id) {
+                return $comment;
+            }
+        }
+        return null;
+    }
+
     /**
      * Display the specified resource.
      *

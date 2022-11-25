@@ -33,6 +33,8 @@ Route::get('/ticket/{id}', [TicketController::class,'show']);
 Route::get('/ticket/{id}/editTags', [TicketController::class,'editTags']);
 Route::get('/ticket/{id}/resolve', [TicketController::class,'resolve']);
 
+Route::get('/comment/{id}/answer', [CommentController::class,'answer']);
+
 Route::get('/createPost', function () {
     return view('createPost');
 })->middleware(['auth', 'verified'])->name('createPost');;

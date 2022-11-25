@@ -13,30 +13,30 @@
                         @csrf
                             <div class="form-group">
                             <label for="exampleInputEmail1">Tags (include)</label><br>
-                            <input type="text" id="tagsInclude" name="tagsInclude" class="form-control">
+                            <input style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" type="text" id="tagsInclude" name="tagsInclude" class="form-control">
                             </div>
                             <br>
                             <div class="form-group">
                             <label for="exampleInputEmail1">Tags (exclude)</label><br>
-                            <textarea name="tagsExclude" class="" ></textarea>
+                            <textarea style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" name="tagsExclude" class="" ></textarea>
                             <br>
                             <label for="exampleInputEmail1">Start Date</label><br>
-                            <input type="date" id="start" name="dateStart">
+                            <input style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" type="date" id="start" name="dateStart">
                             <br>
                             <label for="exampleInputEmail1">End Date</label><br>
-                            <input type="date" id="start" name="dateEnd">
+                            <input style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" type="date" id="start" name="dateEnd">
 
                             <br>
                             <label for="exampleInputEmail1">Status</label><br>
 
-                            <select name="status" id="status">
+                            <select style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" name="status" id="status">
                             <option value="">Any</option>
                             <option value="open">Open</option>
                             <option value="resolved">Resolved</option>
                             </select>
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button style=" margin: 5px;padding: 7px; border-radius: 12px;font-size: 20px; background-color: #CF5C36;color: white;" type="submit" class="btn btn-primary">Submit</button>
                         </form>
                 </div>
             </div>
