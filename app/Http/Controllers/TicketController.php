@@ -184,9 +184,7 @@ class TicketController extends Controller
         }
         $ans = array_unique(($ans));
 
-        echo "filler/n";
-        echo "filler/n";
-        echo "filler/n";echo  nl2br ("kings \n garden");echo  nl2br ("kings \n garden");echo  nl2br ("\n");
+        
    
 
         //exclude
@@ -217,7 +215,7 @@ class TicketController extends Controller
         foreach($ans as $ticket){
             foreach($excludeKeywords as $keyword){
                 if(str_contains($ticket->tags, $keyword)){
-                    echo "match";
+                    //echo "match";
                 }
                 else{
                     array_push($final, $ticket);
