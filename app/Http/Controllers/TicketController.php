@@ -184,21 +184,51 @@ class TicketController extends Controller
         }
         $ans = array_unique(($ans));
 
+        echo "filler/n";
+        echo "filler/n";
+        echo "filler/n";echo  nl2br ("kings \n garden");echo  nl2br ("kings \n garden");echo  nl2br ("\n");
+   
 
         //exclude
         $excludeKeywords = explode(',', $request->tagsExclude);
         $excludeKeywords = array_filter($excludeKeywords);//remove empty array values
 
+        //echo $ans[0];
+        /* Kind of works, but throws far to many errors at times - I think it has to do with how php handles array indexing vs keys
         //exclude with FOR I
         for ($i = 0; $i < count($ans); $i++) {
+            echo $i."i(ans:".count($ans).")".",";
             for($j = 0; $j < count($excludeKeywords); $j++){
+                echo $j."j,";
+                if($ans[1]==null)
                 if(str_contains(trim($ans[$i]), trim($excludeKeywords[$j]))){
+                    echo $ans[$i]." ---- ".$excludeKeywords[$j];
                     //unset($ans[$i]);
                     $ans[$i]="";//unset gives some volatile results
-                    $i=$i-1;
+                    $i++;
+                    $j=0;
+                    //$i=$i-1;
                 }
             }
         }
+        */
+
+        $final = [];
+        foreach($ans as $ticket){
+            foreach($excludeKeywords as $keyword){
+                if(str_contains($ticket->tags, $keyword)){
+                    echo "match";
+                }
+                else{
+                    array_push($final, $ticket);
+                }
+            }
+        }
+
+        if(count($excludeKeywords)==0){
+            $final = $ans;
+        }
+        
 
 
 
@@ -214,7 +244,7 @@ class TicketController extends Controller
         }
         */
 
-        $ans=array_filter($ans);
+        $ans=array_filter($final);
         return view('searchAdvRes', ['tickets'=>$ans]);
 
     }

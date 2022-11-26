@@ -25,7 +25,7 @@
 
                     @foreach ($comments as $comment)
                         @if($comment->isSolution)
-                                <li style="border: 1px solid #266DD3;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
+                                <li style="border: 2px solid #266DD3;border-radius: 10px;font-size: inherit;padding: 10px;margin: 5px;">
                                 <div>{{$comment->content}}</div> <br> <div style="color: #c9c6c6;">{{$comment->author}}</div>
                                 @if($userRole=='agent')
                                         <a href='/comment/{{$comment->id}}/answer'><div style="color: #c9c6c6;float: right;margin: 0px;">Remove as solution</div><br></a>
@@ -52,7 +52,7 @@
                 </div>
                 <form name="create-comment" id="create-comment" method="post" action="{{url('store-comment')}}">
                         @csrf
-                            <div class="form-group">
+                            <div style="margin: 24px;" class="form-group">
                             <label style="font-size: 20px; border-bottom: 2px solid #CF5C36; margin: 10px;" for="exampleInputEmail1">Leave A Comment</label><br>
                             <input style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" type="text" id="content" name="content" class="form-control" required="">
                             <input type="text" id="ticketID" name="ticketID" style="display:none" value='{{$ticket->id}}'>
