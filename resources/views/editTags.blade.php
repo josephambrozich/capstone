@@ -9,11 +9,12 @@
                 <form name="create-comment" id="create-comment" method="post" action="{{url('update-ticket-tags')}}">
                         @csrf
                             <div class="form-group">
-                            <label for="exampleInputEmail1">Comment</label><br>
+                            <label for="exampleInputEmail1">Edit Ticket Tags:</label><br>
                             <input style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" value='{{$ticket->tags}}' type="text" id="tags" name="tags" class="form-control" required="">
+                            <button style=" margin: 5px;padding: 7px; border-radius: 12px;font-size: 20px; background-color: #CF5C36;color: white;" type="submit" class="btn btn-primary">Submit</button>
                             <input type="text" id="ticketID" name="ticketID" style="display:none" value='{{$ticket->id}}'>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            
                         </form>
             </div>
         </div>

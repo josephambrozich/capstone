@@ -325,7 +325,7 @@ class TicketController extends Controller
         $ticket->tags = $request->tags;
         $ticket->save();
         
-        return view('dashboard');
+        return self::show($request->ticketID);
     }
 
 
