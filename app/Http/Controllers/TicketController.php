@@ -48,7 +48,12 @@ class TicketController extends Controller
         $ticket->agent = 'test user';
         $ticket->tags = $request->tags;
         $ticket->save();
-        return redirect('/tickets');
+
+
+        $ticket = Ticket::all()->last();
+
+        return self::show($ticket->id);
+        //return redirect('/tickets');
     }
     
 
@@ -326,6 +331,7 @@ class TicketController extends Controller
         $ticket->save();
         
         return self::show($request->ticketID);
+        //return back();
     }
 
 

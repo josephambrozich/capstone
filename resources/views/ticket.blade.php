@@ -54,7 +54,7 @@
                         @csrf
                             <div style="margin: 24px;" class="form-group">
                             <label style="font-size: 20px; border-bottom: 2px solid #CF5C36; margin: 10px;" for="exampleInputEmail1">Leave A Comment</label><br>
-                            <input style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;" type="text" id="content" name="content" class="form-control" required="">
+                            <textarea style="border: 1px solid #dfdbdb;width: 80%;margin: 5px;border-radius: 10px;padding: 10px;"  id="content" name="content" class="form-control" required=""></textarea>
                             <input type="text" id="ticketID" name="ticketID" style="display:none" value='{{$ticket->id}}'>
                             </div>
                             <button style=" margin: 5px;padding: 7px; border-radius: 12px;font-size: 20px; background-color: #CF5C36;color: white;" type="submit" class="btn btn-primary">Submit</button>
